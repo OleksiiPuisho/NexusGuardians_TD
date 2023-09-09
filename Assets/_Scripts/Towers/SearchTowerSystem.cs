@@ -33,15 +33,9 @@ namespace TowerSystems
             _radiusTower = radiusTower;
         }
 
-        public Transform GetTarget(List<Enemy> enemiesList)
-        {
-            return SearchTargetHandler(enemiesList);
-        }
+        public Transform GetTarget(List<Enemy> enemiesList) => SearchTargetHandler(enemiesList);
 
-        public void SetSearchingType(SearchingType searchingType)
-        {
-            _searchingType = searchingType;
-        }
+        public void SetSearchingType(SearchingType searchingType) => _searchingType = searchingType;
 
         private Transform SearchTargetHandler(List<Enemy> enemiesList)
         {

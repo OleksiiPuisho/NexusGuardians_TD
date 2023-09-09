@@ -7,7 +7,6 @@ public abstract class Tower : MonoBehaviour
 {
     [SerializeField] private Transform _axsisTurret;
     [SerializeField] private Transform _turret;
-    [SerializeField] private Light _lightRadius;
 
     [SerializeField] private TowerData _towerData;
 
@@ -17,6 +16,9 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private Transform _testBase;
     [SerializeField] private Transform _testTarget;
     [SerializeField] private List<Enemy> _enemies = new();
+
+    public TowerData GetTowerData() => _towerData;
+
     void Awake()
     {
         PrepareTowerSystems();
@@ -24,12 +26,12 @@ public abstract class Tower : MonoBehaviour
     void Update()
     {
         if (_testTarget != null)
-            _rotationSystem.RotationHandler(_testTarget);
+            _rotationSystem.RotationHandler(_testTarget);    
     }
 
     protected virtual void PrepareTowerSystems()
     {
-        _rotationSystem = new RotationTowerSystem(_towerData.SpeedRotate, _axsisTurret, _turret);
+        _rotationSystem = new RotationTowerSystem(_axsisTurret, _turret, _towerData.SpeedRotate);
         _searchSystem = new SearchTowerSystem(transform.position, _testBase.position, _towerData.Radius);
     }
     [ContextMenu("ToTower")]
@@ -45,15 +47,6 @@ public abstract class Tower : MonoBehaviour
         _searchSystem.SetSearchingType(SearchingType.NearestToBase);
         var enemy = _searchSystem.GetTarget(_enemies);
         Debug.Log(enemy.name);
-    }
-    [ContextMenu("View Radius")]
-    protected virtual void ViewRadius()
-    {
-        _lightRadius.gameObject.SetActive(true);
-        _lightRadius.range = Mathf.Lerp(0, _towerData.Radius * 2f, 3f);
-        _lightRadius.transform.localPosition = new(0.0f, Mathf.Lerp(0, _towerData.Radius, 3f) - 1f, 0.0f);
-        //if (_lightRadius.range < _towerData.Radius * 2 && _lightRadius.transform.localPosition.y < _towerData.Radius - 1f)
-            //ViewRadius();
     }
 }
 
