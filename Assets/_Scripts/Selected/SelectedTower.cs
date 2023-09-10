@@ -8,9 +8,11 @@ public class SelectedTower : SelectedObject
 {
     [SerializeField] private Light _lightRadius;
     [SerializeField] private Tower _towerComponent;
+    [SerializeField] private float _speedVisibleOffset;
     private TowerData _towerData;
+    private float _multiplerIntensity = 1000f;
 
-    private float _speedVisibleRadius;
+    private float _speedVisible;
 
     void Awake()
     {
@@ -34,8 +36,8 @@ public class SelectedTower : SelectedObject
     {
         _lightRadius.transform.localPosition = new(0.0f, _towerData.Radius, 0.0f);
         _lightRadius.range = _towerData.Radius;
-        _lightRadius.intensity = (_towerData.Radius / 2f) * 1000f;
-        _speedVisibleRadius = _towerData.Radius;
+        _lightRadius.intensity = (_towerData.Radius / 2f) * _multiplerIntensity;
+        _speedVisible = _towerData.Radius + _speedVisibleOffset;
 
         _lightRadius.gameObject.SetActive(false);
         _isVisible = false;
@@ -45,7 +47,7 @@ public class SelectedTower : SelectedObject
         if (_lightRadius.gameObject.activeSelf == false)
             _lightRadius.gameObject.SetActive(true);
 
-        _lightRadius.range += _speedVisibleRadius * Time.deltaTime;
+        _lightRadius.range += _speedVisible * Time.deltaTime;
 
         if (_lightRadius.range > _towerData.Radius * 2f - 1f)
         {
@@ -59,7 +61,7 @@ public class SelectedTower : SelectedObject
         if (IsSelected)
             IsSelected = false;
 
-        _lightRadius.range -= _speedVisibleRadius * Time.deltaTime;
+        _lightRadius.range -= _speedVisible * Time.deltaTime;
 
         if (_lightRadius.range < 1f)
         {
@@ -78,7 +80,8 @@ public class SelectedTower : SelectedObject
         {
             return;
         }
-        EventAggregator.Post(this, new DeselectedAll());
+        _isUnvisible = true;
+        _isVisible = false;
     }
 
     private void OnDestroy()

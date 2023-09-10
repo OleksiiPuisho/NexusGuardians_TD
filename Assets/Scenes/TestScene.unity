@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 1479921497}
   - component: {fileID: 1479921500}
   - component: {fileID: 1479921501}
+  - component: {fileID: 1479921502}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -531,8 +532,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479921496}
-  m_LocalRotation: {x: -0.14821315, y: 0.84660816, z: -0.30712688, w: -0.4086082}
-  m_LocalPosition: {x: 267.5992, y: 13.470941, z: 111.56993}
+  m_LocalRotation: {x: -0.5061822, y: 0.025148243, z: -0.014735028, w: -0.86193395}
+  m_LocalPosition: {x: 252.02827, y: 20.44092, z: 91.7092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -599,6 +600,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &1479921502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479921496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889f35ea64457ec42b85083179d20376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraSpeedOffset: 2
+  _cameraInterpolate: 0.5
+  _distanceCamera: 25
+  _speedZoom: 1
 --- !u!1 &1713707340
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +968,16 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.37254903
       objectReference: {fileID: 0}
+    - target: {fileID: 2131740652564952337, guid: 0d1a7ae47d468e54c995dc0a97bc9f07,
+        type: 3}
+      propertyPath: _speedVisibleOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131740652564952337, guid: 0d1a7ae47d468e54c995dc0a97bc9f07,
+        type: 3}
+      propertyPath: _speedVisibleRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3737306960786255559, guid: 0d1a7ae47d468e54c995dc0a97bc9f07,
         type: 3}
       propertyPath: _testBase
@@ -1179,6 +1206,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6643962892446639130, guid: d2142e57aba990547ba5b2c301bea775,
+        type: 3}
+      propertyPath: _speedVisibleOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643962892446639130, guid: d2142e57aba990547ba5b2c301bea775,
+        type: 3}
+      propertyPath: _speedVisibleRadius
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1257,6 +1294,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1298692541611929751, guid: 7011fa3853f2ebd45b11b587591503ce,
+        type: 3}
+      propertyPath: _speedVisibleOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298692541611929751, guid: 7011fa3853f2ebd45b11b587591503ce,
+        type: 3}
+      propertyPath: _speedVisibleRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3413819230195988961, guid: 7011fa3853f2ebd45b11b587591503ce,
         type: 3}
       propertyPath: _testBase
@@ -1267,6 +1314,11 @@ PrefabInstance:
       propertyPath: _testTarget
       value: 
       objectReference: {fileID: 638185804}
+    - target: {fileID: 3413819230195988961, guid: 7011fa3853f2ebd45b11b587591503ce,
+        type: 3}
+      propertyPath: _towerData._radius
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3413819230195988961, guid: 7011fa3853f2ebd45b11b587591503ce,
         type: 3}
       propertyPath: _enemies.Array.data[0]
@@ -1377,6 +1429,11 @@ PrefabInstance:
       objectReference: {fileID: 638185804}
     - target: {fileID: 2540780573649867241, guid: e6bb9b778e85f95428ebbcaeb038dac3,
         type: 3}
+      propertyPath: _towerData._radius
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2540780573649867241, guid: e6bb9b778e85f95428ebbcaeb038dac3,
+        type: 3}
       propertyPath: _enemies.Array.data[0]
       value: 
       objectReference: {fileID: 1921158630}
@@ -1389,6 +1446,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123405927309908777, guid: e6bb9b778e85f95428ebbcaeb038dac3,
+        type: 3}
+      propertyPath: _speedVisibleOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3123405927309908777, guid: e6bb9b778e85f95428ebbcaeb038dac3,
+        type: 3}
+      propertyPath: _speedVisibleRadius
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3339576573382625810, guid: e6bb9b778e85f95428ebbcaeb038dac3,
         type: 3}
@@ -1568,6 +1635,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4402952161845353923, guid: 2966ff6c876e4364d90305ab20a0bddb,
+        type: 3}
+      propertyPath: _speedVisibleOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402952161845353923, guid: 2966ff6c876e4364d90305ab20a0bddb,
+        type: 3}
+      propertyPath: _speedVisibleRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4986592445469630541, guid: 2966ff6c876e4364d90305ab20a0bddb,
         type: 3}
       propertyPath: m_Layer
@@ -1583,6 +1660,11 @@ PrefabInstance:
       propertyPath: _testTarget
       value: 
       objectReference: {fileID: 638185804}
+    - target: {fileID: 6389235481879867981, guid: 2966ff6c876e4364d90305ab20a0bddb,
+        type: 3}
+      propertyPath: _towerData._radius
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6389235481879867981, guid: 2966ff6c876e4364d90305ab20a0bddb,
         type: 3}
       propertyPath: _enemies.Array.data[0]
