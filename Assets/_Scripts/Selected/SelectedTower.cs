@@ -15,6 +15,7 @@ public class SelectedTower : SelectedObject
     void Awake()
     {
         EventAggregator.Subscribe<DeselectedAll>(DeselectHandler);
+        EventAggregator.Subscribe<SelectedObjectEvent>(SelectedObjecttHandler);
 
         _towerData = _towerComponent.GetTowerData();
 
@@ -34,7 +35,7 @@ public class SelectedTower : SelectedObject
         _lightRadius.transform.localPosition = new(0.0f, _towerData.Radius, 0.0f);
         _lightRadius.range = _towerData.Radius;
         _lightRadius.intensity = (_towerData.Radius / 2f) * 1000f;
-        _speedVisibleRadius = _towerData.Radius / 2f;
+        _speedVisibleRadius = _towerData.Radius;
 
         _lightRadius.gameObject.SetActive(false);
         _isVisible = false;
@@ -55,8 +56,8 @@ public class SelectedTower : SelectedObject
     }
     private void HideRadius()
     {
-        if (_isSelected)
-            _isSelected = false;
+        if (IsSelected)
+            IsSelected = false;
 
         _lightRadius.range -= _speedVisibleRadius * Time.deltaTime;
 
@@ -68,11 +69,21 @@ public class SelectedTower : SelectedObject
     }
     private void DeselectHandler(object sender, DeselectedAll eventData)
     {
+        _isVisible = false;
         _isUnvisible = true;
+    }
+    private void SelectedObjecttHandler(object sender, SelectedObjectEvent eventData)
+    {
+        if (IsSelected && eventData.SelectedObject == this)
+        {
+            return;
+        }
+        EventAggregator.Post(this, new DeselectedAll());
     }
 
     private void OnDestroy()
     {
         EventAggregator.Unsubscribe<DeselectedAll>(DeselectHandler);
+        EventAggregator.Unsubscribe<SelectedObjectEvent>(SelectedObjecttHandler);
     }
 }
