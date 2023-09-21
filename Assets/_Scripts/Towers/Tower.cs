@@ -10,11 +10,12 @@ public abstract class Tower : MonoBehaviour
 
     [SerializeField] private TowerData _towerData;
 
-    private IRotateTower _rotationSystem;
+    private IRotateSystem _rotationSystem;
     private ISearchSystem _searchSystem;
+    private IShootingSystem _shootingSystem;
 
     [SerializeField] private Transform _testBase;
-    [SerializeField] private Transform _testTarget;
+    private Transform _target;
     [SerializeField] private List<Enemy> _enemies = new();
 
     public TowerData GetTowerData() => _towerData;
@@ -24,38 +25,26 @@ public abstract class Tower : MonoBehaviour
         PrepareTowerSystems();
     }
     void Update()
-    {
-        if (_testTarget != null)
-            _rotationSystem.RotationHandler(_testTarget);    
+    {        
+        if (_target != null && _target.gameObject.activeSelf)
+        {
+            _axsisTurret.rotation = _rotationSystem.GetRotation(_axsisTurret, _target, false, true, false);
+            _turret.rotation = _rotationSystem.GetRotation(_turret, _target, true, false, false);
+            if(_rotationSystem.LookToTarget(_turret, ref _target))
+            {
+                Debug.Log("Is ok");
+            }
+        }
+        else
+        {
+            _target = _searchSystem.GetTarget(_enemies);
+        }
     }
 
     protected virtual void PrepareTowerSystems()
     {
-        _rotationSystem = new RotationTowerSystem(_axsisTurret, _turret, _towerData.SpeedRotate);
+        _rotationSystem = new RotationSystem(_towerData.SpeedRotate);
         _searchSystem = new SearchTowerSystem(transform.position, _testBase.position, _towerData.Radius);
+        _shootingSystem = new ShootingSystem();
     }
-    [ContextMenu("ToTower")]
-    protected virtual void NearestToTower()
-    {
-        _searchSystem.SetSearchingType(SearchingType.NearestToTower);
-        var enemy = _searchSystem.GetTarget(_enemies);
-        Debug.Log(enemy.name);
-    }
-    [ContextMenu("ToBase")]
-    protected virtual void NearestToBase()
-    {
-        _searchSystem.SetSearchingType(SearchingType.NearestToBase);
-        var enemy = _searchSystem.GetTarget(_enemies);
-        Debug.Log(enemy.name);
-    }
-}
-
-[System.Serializable] 
-public class TowerData
-{
-    [SerializeField] private float _radius;
-    [SerializeField] private float _speedRotate;
-
-    public float Radius => _radius;
-    public float SpeedRotate => _speedRotate;
 }
