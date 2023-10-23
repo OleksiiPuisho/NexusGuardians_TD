@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4773788894761623898}
   - component: {fileID: 3413819230195988961}
   - component: {fileID: 1298692541611929751}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunTower_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,10 +73,9 @@ MonoBehaviour:
   _axsisTurret: {fileID: 5045177197295940151}
   _turret: {fileID: 2168991563421008922}
   _towerData:
-    _radius: 25
+    _radius: 20
     _speedRotate: 0.65
   _testBase: {fileID: 0}
-  _testTarget: {fileID: 0}
   _enemies:
   - {fileID: 0}
   - {fileID: 0}
@@ -96,6 +95,7 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 6128196127158572416}
   _towerComponent: {fileID: 3413819230195988961}
+  _speedVisibleOffset: 10
 --- !u!1 &4365575873367495259
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 580829265711631597}
   - component: {fileID: 5696355772265253676}
   - component: {fileID: 3634023833915062756}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunL_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 2168991563421008922}
   - component: {fileID: 5910892365865573690}
   - component: {fileID: 4697024795127513289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 227222848973498497}
   - component: {fileID: 2133428544010647821}
   - component: {fileID: 7600942457774402582}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 5045177197295940151}
   - component: {fileID: 2381960162908926696}
   - component: {fileID: 141255078377766703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axses_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8242675433169782718}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6.7545013, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,7 +475,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 0.39433977, b: 0.7169812, a: 1}
+  m_Color: {r: 0, g: 0.37254903, b: 0.67058825, a: 1}
   m_Intensity: 0
   m_Range: 0
   m_SpotAngle: 90
@@ -507,7 +507,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: f8101bb974f56874d8e764eaa9c5ce90, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 5640192797863997494}
   - component: {fileID: 4650195704416816985}
   - component: {fileID: 7494384651926305077}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunP_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
