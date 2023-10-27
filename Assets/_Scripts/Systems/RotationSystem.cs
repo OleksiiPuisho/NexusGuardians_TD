@@ -27,7 +27,7 @@ public class RotationSystem : IRotateSystem
     }
     public Quaternion GetRotation(Transform rotationObject, Transform target, bool enabledX, bool enabledY, bool enabledZ)
     {
-        Quaternion result = Quaternion.SlerpUnclamped(rotationObject.rotation, RotationHandler(rotationObject, GetLeadPoint(rotationObject.position, target)), _speedRotate * Time.deltaTime);
+        Quaternion result = Quaternion.SlerpUnclamped(rotationObject.rotation, RotationHandler(rotationObject, GetLeadPoint(rotationObject, target)), _speedRotate * Time.deltaTime);
 
         if (enabledX == false)
             result = Quaternion.Euler(rotationObject.rotation.eulerAngles.x, result.eulerAngles.y, result.eulerAngles.z);
@@ -48,15 +48,21 @@ public class RotationSystem : IRotateSystem
                 target = enemy.transform;
                 return true;
             }
-            if (hit.collider.transform == target || Vector3.Distance(GetLeadPoint(fromObject.position, target), hit.point) < shootDetection)
+
+            if (hit.collider.transform == target)
+                return true;
+
+            var distance = (GetLeadPoint(fromObject, target) - hit.point).magnitude;
+            if (distance < shootDetection)
                 return true;
         }
         return false;
     }
 
-    private Vector3 GetLeadPoint(Vector3 from, Transform target)
+    private Vector3 GetLeadPoint(Transform from, Transform target)
     {
-        float timeToTarget = Vector3.Distance(from, target.position) / _speedBullet;
+        var distance = (target.position - from.position).magnitude;
+        float timeToTarget = distance / _speedBullet;
         return target.position + target.GetComponent<NavMeshAgent>().velocity * timeToTarget;
     }
 

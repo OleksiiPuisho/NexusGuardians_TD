@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IShootingSystem
 {
-    void Shooting(Transform targetAttack, GameObject bulletPrefab, Transform parent, Vector2 firingSpread);
+    void Shooting(Transform targetAttack, GameObject bulletPrefab, Transform parent, float firingSpread);
 }
 public class ShootingSystem : IShootingSystem
 {
@@ -17,7 +17,7 @@ public class ShootingSystem : IShootingSystem
         _speedBullet = speedBullet;
     }
 
-    public void Shooting(Transform targetAttack, GameObject bulletPrefab, Transform parent, Vector2 firingSpread)
+    public void Shooting(Transform targetAttack, GameObject bulletPrefab, Transform parent, float firingSpread)
     {
         if (targetAttack == null)
             return;
@@ -27,8 +27,8 @@ public class ShootingSystem : IShootingSystem
         bullet.SetProperties(_damage, _speedBullet);
 
         Vector3 angle = parent.rotation.eulerAngles;
-        angle.x += Random.Range(firingSpread.x, firingSpread.y);
-        angle.y += Random.Range(firingSpread.x, firingSpread.y);
+        angle.x += Random.Range(-firingSpread, firingSpread);
+        angle.y += Random.Range(-firingSpread, firingSpread);
         bulletObject.transform.SetPositionAndRotation(parent.position, Quaternion.Euler(angle));
         bulletObject.SetActive(true);
     }

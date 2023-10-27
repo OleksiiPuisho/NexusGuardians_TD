@@ -55,7 +55,10 @@ public abstract class Tower : MonoBehaviour
         {
             StartCoroutine(ShootingDelay());
         }
-        if (Vector3.Distance(transform.position, _target.position) > _towerData.Radius)
+
+        var distance = (_target.position - transform.position).sqrMagnitude;
+
+        if (distance > _towerData.Radius * _towerData.Radius)
         {
             _target = null;
         }

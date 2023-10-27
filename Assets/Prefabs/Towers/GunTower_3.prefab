@@ -113,7 +113,8 @@ Transform:
   m_LocalPosition: {x: -0.004725838, y: 0.25856686, z: 1.184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3115444209632427730}
   m_Father: {fileID: 8334888845679130675}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,6 +168,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2239399473848651048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7996370865310172409}
+  m_Layer: 6
+  m_Name: SpawnBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7996370865310172409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2239399473848651048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7331071056376115396}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2550838169399995025
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +514,8 @@ Transform:
   m_LocalPosition: {x: -0.0047259573, y: 0.25856686, z: 1.184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7996370865310172409}
   m_Father: {fileID: 8334888845679130675}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -571,7 +604,7 @@ Transform:
   - {fileID: 7968546219917857960}
   - {fileID: 1950994731761693255}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4222447784682006080
 BoxCollider:
@@ -608,13 +641,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axsisTurret: {fileID: 3149888080663481886}
   _turret: {fileID: 8334888845679130675}
+  _bulletParents:
+  - {fileID: 7996370865310172409}
+  - {fileID: 3115444209632427730}
   _towerData:
     _radius: 25
     _speedRotate: 0.75
+    _damage: {x: 5, y: 8}
+    _reloadingSpeed: 3
+    _shootingDelay: 0.5
+    _speedBullet: 20
+    _shootDetection: 5
+    _firingSpread: 1
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
   - {fileID: 0}
+  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+    type: 3}
 --- !u!114 &3123405927309908777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,3 +676,34 @@ MonoBehaviour:
   _lightRadius: {fileID: 1626807844534322645}
   _towerComponent: {fileID: 2540780573649867241}
   _speedVisibleOffset: 10
+--- !u!1 &8612087273160941354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3115444209632427730}
+  m_Layer: 6
+  m_Name: SpawnBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3115444209632427730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8612087273160941354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: 0, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2591621594810993695}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

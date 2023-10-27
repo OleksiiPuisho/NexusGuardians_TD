@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3007696271282855761}
   - {fileID: 2834815293050122961}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3861687991882364188
 BoxCollider:
@@ -72,13 +72,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axsisTurret: {fileID: 7826741335549248999}
   _turret: {fileID: 3784136930258154442}
+  _bulletParents:
+  - {fileID: 3889986872543855222}
   _towerData:
     _radius: 15
     _speedRotate: 0.6
+    _damage: {x: 1.5, y: 3}
+    _reloadingSpeed: 5
+    _shootingDelay: 0.6
+    _speedBullet: 15
+    _shootDetection: 5
+    _firingSpread: 1.7
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
   - {fileID: 0}
+  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+    type: 3}
 --- !u!114 &4402952161845353923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +135,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.2528175, z: 1.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3889986872543855222}
   m_Father: {fileID: 3784136930258154442}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,6 +190,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4085446627945675207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3889986872543855222}
+  m_Layer: 6
+  m_Name: SpawnBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3889986872543855222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4085446627945675207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 926274561294725083}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4986592445469630541
 GameObject:
   m_ObjectHideFlags: 0

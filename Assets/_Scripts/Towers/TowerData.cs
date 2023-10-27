@@ -10,7 +10,7 @@ public class TowerData
     [SerializeField] private float _shootingDelay;
     [SerializeField] private float _speedBullet;
     [SerializeField] private float _shootDetection;
-    [SerializeField] private Vector2 _firingSpread;
+    [SerializeField] private float _firingSpread;
 
     public float Radius => _radius;
     public float SpeedRotate => _speedRotate;
@@ -19,5 +19,5 @@ public class TowerData
     public float ShootingDelay => _shootingDelay;
     public float SpeedBullet => _speedBullet;
     public float ShootDetection => _shootDetection;
-    public Vector2 FiringSpread => _firingSpread;
+    public float FiringSpread => _firingSpread;
 }
