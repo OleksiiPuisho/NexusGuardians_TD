@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public interface IEnemy
+public interface IDamageble
 {
     public float Health { get; }
     void SetHealth(float ammount);
 }
-public class Enemy : MonoBehaviour, IEnemy
+[RequireComponent(typeof(NavMeshAgent))]
+public class Enemy : MonoBehaviour, IDamageble
 {
-    public float Health { get; private set; }
+    [SerializeField] private float _testHealth;
+    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private Transform _testDestination;
+    public float Health => _testHealth;
 
     public void SetHealth(float ammount)
     {
-        Health += ammount;
+        _testHealth += ammount;
+        if (_testHealth <= 0)
+            PoolObjects.PutObject(gameObject);
     }
 
     void Start()
@@ -21,8 +28,8 @@ public class Enemy : MonoBehaviour, IEnemy
         
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        _agent.SetDestination(_testDestination.position);
     }
 }

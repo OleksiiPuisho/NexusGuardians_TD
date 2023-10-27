@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6362151591002879469}
   - component: {fileID: 1464967535124458701}
   - component: {fileID: 539313023704756542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0.0017996132, y: 0.6282124, z: -0.112999916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5521419634182105845}
   m_Father: {fileID: 4184568721501826013}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928706098537940068}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.637848, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,7 +128,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 0.39433977, b: 0.7169812, a: 1}
+  m_Color: {r: 0, g: 0.37254903, b: 0.67058825, a: 1}
   m_Intensity: 0
   m_Range: 0
   m_SpotAngle: 90
@@ -159,7 +160,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: f8101bb974f56874d8e764eaa9c5ce90, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -212,7 +213,7 @@ GameObject:
   - component: {fileID: 1878649217889448895}
   - component: {fileID: 2417226284289565507}
   - component: {fileID: 4883959373142131002}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platforrm_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +296,7 @@ GameObject:
   - component: {fileID: 4184568721501826013}
   - component: {fileID: 1211337374220039972}
   - component: {fileID: 8088968614779594581}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axsis_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +381,7 @@ GameObject:
   - component: {fileID: 5475095262031722335}
   - component: {fileID: 5097065749920219342}
   - component: {fileID: 6643962892446639130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MachineGun_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +404,7 @@ Transform:
   - {fileID: 1878649217889448895}
   - {fileID: 5518975608026247919}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5475095262031722335
 BoxCollider:
@@ -440,14 +441,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axsisTurret: {fileID: 4184568721501826013}
   _turret: {fileID: 6362151591002879469}
+  _bulletParents:
+  - {fileID: 5521419634182105845}
   _towerData:
     _radius: 10
-    _speedRotate: 1.3
+    _speedRotate: 1.5
+    _damage: {x: 0.3, y: 1.5}
+    _reloadingSpeed: 1
+    _shootingDelay: 0.1
+    _speedBullet: 15
+    _shootDetection: 7
+    _firingSpread: 2
   _testBase: {fileID: 0}
-  _testTarget: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  - {fileID: 0}
+  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+    type: 3}
 --- !u!114 &6643962892446639130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,3 +473,35 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 3994098011026695319}
   _towerComponent: {fileID: 5097065749920219342}
+  _speedVisibleOffset: 10
+--- !u!1 &6595470873759822147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5521419634182105845}
+  m_Layer: 6
+  m_Name: SpawnBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5521419634182105845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595470873759822147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6362151591002879469}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

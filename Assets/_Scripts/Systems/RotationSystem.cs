@@ -1,30 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public interface IRotateSystem
 {
     Quaternion GetRotation(Transform rotationObject, Transform target);
     Quaternion GetRotation(Transform rotationObject, Transform target, bool enabledX, bool enabledY, bool enabledZ);
-    bool LookToTarget(Transform fromObject, ref Transform target);
+    bool LookToTarget(Transform fromObject, ref Transform target, float shootDetection);
 }
 public class RotationSystem : IRotateSystem
 {
     private float _speedRotate;
+    private float _speedBullet;
 
-    public RotationSystem(float speedRotate)
+    public RotationSystem(float speedRotate, float speedBullet)
     {
         _speedRotate = speedRotate;
+        _speedBullet = speedBullet;
     }
 
     public Quaternion GetRotation(Transform rotationObject, Transform target)
     {
-        Quaternion result = Quaternion.SlerpUnclamped(rotationObject.rotation, RotationHandler(rotationObject, target), _speedRotate * Time.deltaTime);
+        Quaternion result = Quaternion.SlerpUnclamped(rotationObject.rotation, RotationHandler(rotationObject, target.position), _speedRotate * Time.deltaTime);
         return result;
     }
     public Quaternion GetRotation(Transform rotationObject, Transform target, bool enabledX, bool enabledY, bool enabledZ)
     {
-        Quaternion result = Quaternion.SlerpUnclamped(rotationObject.rotation, RotationHandler(rotationObject, target), _speedRotate * Time.deltaTime);
+        Quaternion result = Quaternion.SlerpUnclamped(rotationObject.rotation, RotationHandler(rotationObject, GetLeadPoint(rotationObject, target)), _speedRotate * Time.deltaTime);
 
         if (enabledX == false)
             result = Quaternion.Euler(rotationObject.rotation.eulerAngles.x, result.eulerAngles.y, result.eulerAngles.z);
@@ -36,21 +39,36 @@ public class RotationSystem : IRotateSystem
         return result;
     }
 
-    public bool LookToTarget(Transform fromObject, ref Transform target)
+    public bool LookToTarget(Transform fromObject, ref Transform target, float shootDetection)
     {
         if (Physics.Raycast(fromObject.position, fromObject.forward, out RaycastHit hit))
         {
-            if (hit.collider.transform == target)
+            if (hit.collider.TryGetComponent<Enemy>(out var enemy))
             {
+                target = enemy.transform;
                 return true;
             }
+
+            if (hit.collider.transform == target)
+                return true;
+
+            var distance = (GetLeadPoint(fromObject, target) - hit.point).magnitude;
+            if (distance < shootDetection)
+                return true;
         }
         return false;
     }
 
-    private Quaternion RotationHandler(Transform rotationObject, Transform target)
+    private Vector3 GetLeadPoint(Transform from, Transform target)
     {
-        Quaternion direction = Quaternion.LookRotation(target.position - rotationObject.position);
+        var distance = (target.position - from.position).magnitude;
+        float timeToTarget = distance / _speedBullet;
+        return target.position + target.GetComponent<NavMeshAgent>().velocity * timeToTarget;
+    }
+
+    private Quaternion RotationHandler(Transform rotationObject, Vector3 targetPoint)
+    {
+        Quaternion direction = Quaternion.LookRotation(targetPoint - rotationObject.position);
         Quaternion result = Quaternion.Euler(direction.eulerAngles.x, direction.eulerAngles.y, direction.eulerAngles.z);
         
         return result;

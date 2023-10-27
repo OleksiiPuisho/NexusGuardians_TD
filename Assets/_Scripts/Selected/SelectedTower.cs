@@ -34,7 +34,7 @@ public class SelectedTower : SelectedObject
 
     private void ResetLightRadius()
     {
-        _lightRadius.transform.localPosition = new(0.0f, _towerData.Radius, 0.0f);
+        _lightRadius.transform.localPosition = new(0.0f, _towerData.Radius - 1f, 0.0f);
         _lightRadius.range = _towerData.Radius;
         _lightRadius.intensity = (_towerData.Radius / 2f) * _multiplerIntensity;
         _speedVisible = _towerData.Radius + _speedVisibleOffset;
