@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5ff5f1002e97f448551057328a61d8, type: 3}
+  m_Name: TowerItemScriptable
+  m_EditorClassIdentifier: 
+  PrefabItem: {fileID: 1568659033498890583, guid: 28797d45e90d9e44b99c41ff0c08858b,
+    type: 3}
+  TowerItems:
+  - _icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    _price: 100
+    _prefab: {fileID: 5451435426963874650, guid: d2142e57aba990547ba5b2c301bea775,
+      type: 3}
+  - _icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    _price: 300
+    _prefab: {fileID: 2841332623722784125, guid: 2966ff6c876e4364d90305ab20a0bddb,
+      type: 3}

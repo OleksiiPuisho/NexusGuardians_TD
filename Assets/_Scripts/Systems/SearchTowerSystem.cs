@@ -7,6 +7,7 @@ namespace TowerSystems
     public interface ISearchSystem
     {
         void SetSearchingType(SearchingType searchingType);
+        SearchingType GetSearchingType();
         Transform GetTarget(List<Enemy> enemiesList);
     }
 
@@ -19,16 +20,16 @@ namespace TowerSystems
 
     public class SearchTowerSystem : ISearchSystem
     {
-        private SearchingType _searchingType = SearchingType.NearestToTower;
+        private SearchingType _searchingType;
 
-        private Vector3 _towerPosition;
+        private Vector3 _turretPosition;
         private Vector3 _basePosition;
 
         private float _radiusTower;
 
         public SearchTowerSystem(Vector3 towerPosition, Vector3 basePosition, float radiusTower)
         {
-            _towerPosition = towerPosition;
+            _turretPosition = towerPosition;
             _basePosition = basePosition;
             _radiusTower = radiusTower;
         }
@@ -36,6 +37,7 @@ namespace TowerSystems
         public Transform GetTarget(List<Enemy> enemiesList) => SearchTargetHandler(enemiesList);
 
         public void SetSearchingType(SearchingType searchingType) => _searchingType = searchingType;
+        public SearchingType GetSearchingType() => _searchingType;
 
         private Transform SearchTargetHandler(List<Enemy> enemiesList)
         {
@@ -59,12 +61,24 @@ namespace TowerSystems
             Enemy enemyNearesToTower = null;
             foreach (var enemy in enemiesList)
             {
-                if(Vector3.Distance(_towerPosition, enemy.transform.position) <= _radiusTower)
+                var distance = (enemy.transform.position - _turretPosition).magnitude;
+                if(distance <= _radiusTower)
                 {
-                    if (enemyNearesToTower == null)
-                        enemyNearesToTower = enemy;
-                    else if (Vector3.Distance(_towerPosition, enemy.transform.position) < Vector3.Distance(_towerPosition, enemyNearesToTower.transform.position))
-                        enemyNearesToTower = enemy;
+                    var direction = enemy.transform.position - _turretPosition;
+                    if (Physics.Raycast(_turretPosition, direction, out RaycastHit hit))
+                    {
+                        if (hit.collider.gameObject.GetComponent<Enemy>())
+                        {
+                            if (enemyNearesToTower == null)
+                                enemyNearesToTower = enemy;
+                            else
+                            {
+                                var distanceLast = (enemyNearesToTower.transform.position - _turretPosition).magnitude;
+                                if (distance < distanceLast)
+                                    enemyNearesToTower = enemy;
+                            }
+                        }
+                    }
                 }
             }
             if (enemyNearesToTower != null)
@@ -77,15 +91,25 @@ namespace TowerSystems
             Enemy enemyNearesToBase = null;
             foreach (var enemy in enemiesList)
             {
-                if (Vector3.Distance(_towerPosition, enemy.transform.position) <= _radiusTower)
+                var distance = (enemy.transform.position - _basePosition).magnitude;
+                if (distance <= _radiusTower)
                 {
-                    if (enemyNearesToBase == null)
+                    var direction = enemy.transform.position - _turretPosition;
+                    if (Physics.Raycast(_turretPosition, direction, out RaycastHit hit))
                     {
-                        enemyNearesToBase = enemy;
-                    }
-                    else if (Vector3.Distance(_basePosition, enemy.transform.position) < Vector3.Distance(_basePosition, enemyNearesToBase.transform.position))
-                    {
-                        enemyNearesToBase = enemy;
+                        if (hit.collider.gameObject.GetComponent<Enemy>())
+                        {
+                            if (enemyNearesToBase == null)
+                            {
+                                enemyNearesToBase = enemy;
+                            }
+                            else
+                            {
+                                var distanceLast = (enemyNearesToBase.transform.position - _basePosition).magnitude;
+                                if (distance < distanceLast)
+                                    enemyNearesToBase = enemy;
+                            }
+                        }
                     }
                 }
             }
@@ -99,15 +123,23 @@ namespace TowerSystems
             Enemy enemyMinHP = null;
             foreach (var enemy in enemiesList)
             {
-                if (Vector3.Distance(_towerPosition, enemy.transform.position) <= _radiusTower)
+                var distance = (enemy.transform.position - _turretPosition).magnitude;
+                if (distance <= _radiusTower)
                 {
-                    if (enemyMinHP == null)
+                    var direction = enemy.transform.position - _turretPosition;
+                    if (Physics.Raycast(_turretPosition, direction, out RaycastHit hit))
                     {
-                        enemyMinHP = enemy;
-                    }
-                    else if (enemy.Health < enemyMinHP.Health)
-                    {
-                        enemyMinHP = enemy;
+                        if (hit.collider.gameObject.GetComponent<Enemy>())
+                        {
+                            if (enemyMinHP == null)
+                            {
+                                enemyMinHP = enemy;
+                            }
+                            else if (enemy.Health < enemyMinHP.Health)
+                            {
+                                enemyMinHP = enemy;
+                            }
+                        }
                     }
                 }
             }
@@ -116,5 +148,6 @@ namespace TowerSystems
             else
                 return null;
         }
+
     }
 }

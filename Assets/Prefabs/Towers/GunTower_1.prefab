@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3007696271282855761}
   - {fileID: 2834815293050122961}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3861687991882364188
 BoxCollider:
@@ -75,20 +75,31 @@ MonoBehaviour:
   _bulletParents:
   - {fileID: 3889986872543855222}
   _towerData:
-    _radius: 15
+    _name: Gun Tower
+    _searchingType: 0
+    _attackType: 0
+    _bulletType: 0
+    _radius: 20
     _speedRotate: 0.6
-    _damage: {x: 1.5, y: 3}
-    _reloadingSpeed: 5
+    _damage: {x: 5, y: 10}
+    _reloadingSpeed: 2
     _shootingDelay: 0.6
     _speedBullet: 15
     _shootDetection: 5
     _firingSpread: 1.7
+    _bulletDatas:
+    - _bulletType: 0
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 1
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 2
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  - {fileID: 0}
-  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
-    type: 3}
 --- !u!114 &4402952161845353923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +116,7 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 679878138906210871}
   _towerComponent: {fileID: 6389235481879867981}
-  _speedVisibleOffset: 10
+  _speedVisibleOffset: 0.01
 --- !u!1 &3469784526113570521
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +128,7 @@ GameObject:
   - component: {fileID: 926274561294725083}
   - component: {fileID: 5515264487681577104}
   - component: {fileID: 1451734464875836337}
+  - component: {fileID: 5732740829688948447}
   m_Layer: 6
   m_Name: Gun_lp
   m_TagString: Untagged
@@ -132,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3469784526113570521}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2528175, z: 1.31}
+  m_LocalPosition: {x: 0, y: 0.25, z: 1.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -190,6 +202,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &5732740829688948447
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3469784526113570521}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d489ce07cdd9d5b4d889e3304585dacb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4085446627945675207
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +420,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0

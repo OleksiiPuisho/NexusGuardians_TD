@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6559264535526608917}
   - component: {fileID: 5679196809028215960}
   - component: {fileID: 1823859110581500982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MachineGun_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 7535702702595712864}
   - {fileID: 3951956422845071820}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6559264535526608917
 BoxCollider:
@@ -76,7 +76,11 @@ MonoBehaviour:
   - {fileID: 8154020597226580112}
   - {fileID: 8330092859599873433}
   _towerData:
-    _radius: 15
+    _name: Machine Gun
+    _searchingType: 2
+    _attackType: 2
+    _bulletType: 0
+    _radius: 25
     _speedRotate: 5
     _damage: {x: 1, y: 3}
     _reloadingSpeed: 0.5
@@ -84,11 +88,19 @@ MonoBehaviour:
     _speedBullet: 20
     _shootDetection: 7
     _firingSpread: 1
+    _bulletDatas:
+    - _bulletType: 0
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 1
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 2
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
-    type: 3}
 --- !u!114 &1823859110581500982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +117,7 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 8645667647615234260}
   _towerComponent: {fileID: 5679196809028215960}
-  _speedVisibleOffset: 10
+  _speedVisibleOffset: 0.01
 --- !u!1 &5276796042563741838
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +129,7 @@ GameObject:
   - component: {fileID: 5230068095101779714}
   - component: {fileID: 7082460997666776059}
   - component: {fileID: 200329047925732234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axsis_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8330092859599873433}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +244,7 @@ GameObject:
   - component: {fileID: 7535702702595712864}
   - component: {fileID: 5984661940229093276}
   - component: {fileID: 3549174057870366181}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platforrm_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,7 +361,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0.37254903, b: 0.67058825, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 0
   m_SpotAngle: 90
   m_InnerSpotAngle: 90
@@ -386,7 +398,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -431,7 +443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8154020597226580112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +476,7 @@ GameObject:
   - component: {fileID: 3084010294043681074}
   - component: {fileID: 7409230739694434322}
   - component: {fileID: 8501241912234042849}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret_lp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8592706496947475219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6282124, z: -0.10700226}
+  m_LocalPosition: {x: 0, y: 0.6282124, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

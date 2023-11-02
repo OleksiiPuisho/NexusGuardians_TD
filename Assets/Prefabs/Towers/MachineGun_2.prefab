@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 638387123764319345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769965837953263026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2857403131336065421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0010004342, y: 0.6282124, z: -0.102999926}
+  m_LocalPosition: {x: 0, y: 0.6282124, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -396,7 +396,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -467,7 +467,7 @@ Transform:
   - {fileID: 4038837870355936766}
   - {fileID: 8162149739351062773}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7361602778832974326
 BoxCollider:
@@ -508,7 +508,11 @@ MonoBehaviour:
   - {fileID: 638387123764319345}
   - {fileID: 1769965837953263026}
   _towerData:
-    _radius: 12
+    _name: Machine Gun
+    _searchingType: 1
+    _attackType: 2
+    _bulletType: 0
+    _radius: 20
     _speedRotate: 3
     _damage: {x: 0.8, y: 2.3}
     _reloadingSpeed: 0.8
@@ -516,11 +520,19 @@ MonoBehaviour:
     _speedBullet: 18
     _shootDetection: 7
     _firingSpread: 1.5
+    _bulletDatas:
+    - _bulletType: 0
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 1
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 2
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
-    type: 3}
 --- !u!114 &2131740652564952337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,4 +549,4 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 80649537724150939}
   _towerComponent: {fileID: 3737306960786255559}
-  _speedVisibleOffset: 10
+  _speedVisibleOffset: 0.01

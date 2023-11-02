@@ -12,24 +12,16 @@ public class SelectedTower : SelectedObject
     private TowerData _towerData;
     private float _multiplerIntensity = 1000f;
 
-    private float _speedVisible;
+    private WaitForSeconds _waitForSeconds;
 
-    void Awake()
+    void Start()
     {
-        EventAggregator.Subscribe<DeselectedAll>(DeselectHandler);
-        EventAggregator.Subscribe<SelectedObjectEvent>(SelectedObjecttHandler);
-
         _towerData = _towerComponent.GetTowerData();
-
         ResetLightRadius();
-    }
-    private void Update()
-    {
-        if (_isVisible)
-            ShowRadius();
-        else if (_isUnvisible)
-            HideRadius();
+        _waitForSeconds = new WaitForSeconds(_speedVisibleOffset);
 
+        EventAggregator.Subscribe<DeselectedAllEvent>(DeselectHandler);
+        EventAggregator.Subscribe<SelectedObjectEvent>(SelectedObjectHandler);
     }
 
     private void ResetLightRadius()
@@ -37,56 +29,75 @@ public class SelectedTower : SelectedObject
         _lightRadius.transform.localPosition = new(0.0f, _towerData.Radius - 1f, 0.0f);
         _lightRadius.range = _towerData.Radius;
         _lightRadius.intensity = (_towerData.Radius / 2f) * _multiplerIntensity;
-        _speedVisible = _towerData.Radius + _speedVisibleOffset;
 
-        _lightRadius.gameObject.SetActive(false);
+        _lightRadius.enabled = false;
         _isVisible = false;
     }
-    private void ShowRadius()
+    private void DeselectHandler(object sender, DeselectedAllEvent eventData)
     {
-        if (_lightRadius.gameObject.activeSelf == false)
-            _lightRadius.gameObject.SetActive(true);
-
-        _lightRadius.range += _speedVisible * Time.deltaTime;
-
-        if (_lightRadius.range > _towerData.Radius * 2f - 1f)
+        _isVisible = false;
+        _isUnvisible = true;
+        StartCoroutine(VisualizationRadiusDelay());
+    }
+    private void SelectedObjectHandler(object sender, SelectedObjectEvent eventData)
+    {
+        if (eventData.SelectedObject == this)
         {
-            _lightRadius.range = _towerData.Radius * 2f;
+            _isUnvisible = false;
+            _isVisible = true;
+        }
+        else
+        {
             _isVisible = false;
-            _isUnvisible = false;
+            _isUnvisible = true;
         }
+            StartCoroutine(VisualizationRadiusDelay());
     }
-    private void HideRadius()
-    {
-        if (IsSelected)
-            IsSelected = false;
 
-        _lightRadius.range -= _speedVisible * Time.deltaTime;
+    private IEnumerator VisualizationRadiusDelay()
+    {
+        if(_isVisible)
+        {
+            if (_lightRadius.enabled == false)
+                _lightRadius.enabled = true;
 
-        if (_lightRadius.range < 1f)
-        {
-            ResetLightRadius();
-            _isUnvisible = false;
+            _lightRadius.range += _towerData.Radius * Time.deltaTime;
+
+            if (_lightRadius.range > _towerData.Radius * 2f - 1f)
+            {
+                _lightRadius.range = _towerData.Radius * 2f;
+                _isVisible = false;
+                _isUnvisible = false;
+            }
+            else
+            {
+                yield return _waitForSeconds;
+                StartCoroutine(VisualizationRadiusDelay());
+            }
         }
-    }
-    private void DeselectHandler(object sender, DeselectedAll eventData)
-    {
-        _isVisible = false;
-        _isUnvisible = true;
-    }
-    private void SelectedObjecttHandler(object sender, SelectedObjectEvent eventData)
-    {
-        if (IsSelected && eventData.SelectedObject == this)
+        else if (_isUnvisible)
         {
-            return;
+            if (IsSelected)
+                IsSelected = false;
+
+            _lightRadius.range -= _towerData.Radius * Time.deltaTime;
+
+            if (_lightRadius.range < 1f)
+            {
+                ResetLightRadius();
+                _isUnvisible = false;
+            }
+            else
+            {
+                yield return _waitForSeconds;
+                StartCoroutine(VisualizationRadiusDelay());
+            }
         }
-        _isUnvisible = true;
-        _isVisible = false;
     }
 
     private void OnDestroy()
     {
-        EventAggregator.Unsubscribe<DeselectedAll>(DeselectHandler);
-        EventAggregator.Unsubscribe<SelectedObjectEvent>(SelectedObjecttHandler);
+        EventAggregator.Unsubscribe<DeselectedAllEvent>(DeselectHandler);
+        EventAggregator.Unsubscribe<SelectedObjectEvent>(SelectedObjectHandler);
     }
 }

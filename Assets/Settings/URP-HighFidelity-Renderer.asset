@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6946289372815465583
+--- !u!114 &-3196224885582378144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,12 +15,12 @@ MonoBehaviour:
   m_Active: 1
   m_Settings:
     technique: 0
-    maxDrawDistance: 1000
+    maxDrawDistance: 500
     decalLayers: 0
     dBufferSettings:
-      surfaceData: 2
+      surfaceData: 0
     screenSpaceSettings:
-      normalBlend: 0
+      normalBlend: 1
   m_CopyDepthPS: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
   m_DBufferClear: {fileID: 4800000, guid: f056d8bd2a1c7e44e9729144b4c70395, type: 3}
 --- !u!114 &-1878332245247344467
@@ -76,8 +76,8 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: -6946289372815465583}
-  m_RendererFeatureMap: adc0de57c6d2eee5916343529ed2999f
+  - {fileID: -3196224885582378144}
+  m_RendererFeatureMap: adc0de57c6d2eee5604b99a066baa4d3
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
