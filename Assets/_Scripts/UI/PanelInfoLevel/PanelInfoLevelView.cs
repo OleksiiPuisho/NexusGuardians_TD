@@ -69,6 +69,8 @@ namespace MVP
                 var towerData = eventData.SelectedObject.GetComponent<Tower>().GetTowerData();
                 Presenter.UpdateTowerInfoData(towerData);
             }
+            else
+                Hide();
         }
         private void OnDestroy()
         {

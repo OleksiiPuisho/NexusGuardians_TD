@@ -20,7 +20,6 @@ public abstract class SelectedObject : MonoBehaviour, ISelectedObject, IPointerC
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        EventAggregator.Post(this, new DeselectedAllEvent());
         IsSelected = true;
         if (_selectedVisualization) _isVisible = true;
         EventAggregator.Post(this, new SelectedObjectEvent() { TypeSelectedObject = _typeSelectedObject, SelectedObject = this });

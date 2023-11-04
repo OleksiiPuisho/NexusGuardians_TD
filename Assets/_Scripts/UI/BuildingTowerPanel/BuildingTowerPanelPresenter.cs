@@ -23,6 +23,7 @@ namespace MVP
         public void CreatedTowerClick(GameObject prefabTower)
         {
             _createTowerCommand.Execute(prefabTower);
+            View.Hide();
         }
 
         public void Initialize()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c16e44e1d9b46644bb3e916c9d5a3236
+guid: feed288753460bd40a69afb3a93f9c49
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 307, y: 368, z: 350, w: 391}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -121,48 +121,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Icon_0
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 6
-        width: 810
-        height: 810
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 0, y: -205}
-        - {x: 205, y: 0}
-        - {x: 0, y: 205}
-        - {x: -205, y: 0}
-      physicsShape:
-      - - {x: 0, y: -205}
-        - {x: 205, y: 0}
-        - {x: 0, y: 205}
-        - {x: -205, y: 0}
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc7737f885699f6499dd0b4a9074fbee
-      internalID: -1627310784
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Icon_0: -1627310784
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

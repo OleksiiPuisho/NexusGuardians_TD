@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6559264535526608917}
   - component: {fileID: 5679196809028215960}
   - component: {fileID: 1823859110581500982}
+  - component: {fileID: 288606994199399919}
   m_Layer: 6
   m_Name: MachineGun_3
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 7535702702595712864}
   - {fileID: 3951956422845071820}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6559264535526608917
 BoxCollider:
@@ -85,7 +86,7 @@ MonoBehaviour:
     _damage: {x: 1, y: 3}
     _reloadingSpeed: 0.5
     _shootingDelay: 0.05
-    _speedBullet: 20
+    _speedBullet: 30
     _shootDetection: 7
     _firingSpread: 1
     _bulletDatas:
@@ -118,6 +119,25 @@ MonoBehaviour:
   _lightRadius: {fileID: 8645667647615234260}
   _towerComponent: {fileID: 5679196809028215960}
   _speedVisibleOffset: 0.01
+--- !u!114 &288606994199399919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4116606235394963333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fa21e6d40acd40a9bdfaec7453904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disolvePropertyName: _Edge
+  _renderers:
+  - {fileID: 200329047925732234}
+  - {fileID: 8501241912234042849}
+  - {fileID: 3549174057870366181}
+  _propertyValue: {x: 3, y: 5}
+  _duration: 2
 --- !u!1 &5276796042563741838
 GameObject:
   m_ObjectHideFlags: 0

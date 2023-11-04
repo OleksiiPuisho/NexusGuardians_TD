@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using ItemLinks;
 using UnityEngine.UI;
+using Helpers;
+using Helpers.Events;
 
 namespace MVP
 {
@@ -24,6 +26,9 @@ namespace MVP
         {
             base.OnAwake();
             PrepareTowerItems();
+
+            EventAggregator.Subscribe<SelectedObjectEvent>(SelectedObjecttHandler);
+            EventAggregator.Subscribe<DeselectedAllEvent>(delegate { Hide(); });
         }
 
         private void PrepareTowerItems()
@@ -38,7 +43,18 @@ namespace MVP
                 item.GetComponent<Button>().onClick.AddListener(delegate { CreateTowerButtonClick(_towerItemScriptable.TowerItems[itemIndex].Prefab); });
             }
         }
-
-        public void CreateTowerButtonClick(GameObject prefab) => Presenter.CreatedTowerClick(prefab);
+        private void SelectedObjecttHandler(object sender, SelectedObjectEvent eventData)
+        {
+            if (eventData.TypeSelectedObject == TypeSelectedObject.BuildTowerPoint)
+                Show();
+            else
+                Hide();
+        }
+        private void CreateTowerButtonClick(GameObject prefab) => Presenter.CreatedTowerClick(prefab);
+        private void OnDestroy()
+        {
+            EventAggregator.Unsubscribe<SelectedObjectEvent>(SelectedObjecttHandler);
+            EventAggregator.Unsubscribe<DeselectedAllEvent>(delegate { Hide(); });
+        }
     }
 }

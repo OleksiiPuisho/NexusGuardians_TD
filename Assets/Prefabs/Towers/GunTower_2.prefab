@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4773788894761623898}
   - component: {fileID: 3413819230195988961}
   - component: {fileID: 1298692541611929751}
+  - component: {fileID: 1407119262494012714}
   m_Layer: 6
   m_Name: GunTower_2
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 227222848973498497}
   - {fileID: 3844839737054064042}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4773788894761623898
 BoxCollider:
@@ -85,7 +86,7 @@ MonoBehaviour:
     _damage: {x: 10, y: 20}
     _reloadingSpeed: 1.5
     _shootingDelay: 0.6
-    _speedBullet: 18
+    _speedBullet: 30
     _shootDetection: 5
     _firingSpread: 1.5
     _bulletDatas:
@@ -118,6 +119,27 @@ MonoBehaviour:
   _lightRadius: {fileID: 6128196127158572416}
   _towerComponent: {fileID: 3413819230195988961}
   _speedVisibleOffset: 0.01
+--- !u!114 &1407119262494012714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005510940365918893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fa21e6d40acd40a9bdfaec7453904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disolvePropertyName: _Edge
+  _renderers:
+  - {fileID: 141255078377766703}
+  - {fileID: 4697024795127513289}
+  - {fileID: 3634023833915062756}
+  - {fileID: 7494384651926305077}
+  - {fileID: 7600942457774402582}
+  _propertyValue: {x: 3, y: 5}
+  _duration: 2
 --- !u!1 &1211423782144980782
 GameObject:
   m_ObjectHideFlags: 0

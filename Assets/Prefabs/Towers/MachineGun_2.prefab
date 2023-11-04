@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4700278059399808544, guid: 3adb48062eab9524ebdde9e82e0bd4fa, type: 3}
+  - {fileID: 2100000, guid: ac3344e923bd00142a429c4195cf8152, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +145,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4700278059399808544, guid: 3adb48062eab9524ebdde9e82e0bd4fa, type: 3}
+  - {fileID: 2100000, guid: ac3344e923bd00142a429c4195cf8152, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -292,7 +292,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4700278059399808544, guid: 3adb48062eab9524ebdde9e82e0bd4fa, type: 3}
+  - {fileID: 2100000, guid: ac3344e923bd00142a429c4195cf8152, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 7361602778832974326}
   - component: {fileID: 3737306960786255559}
   - component: {fileID: 2131740652564952337}
+  - component: {fileID: 2148992178707090965}
   m_Layer: 6
   m_Name: MachineGun_2
   m_TagString: Untagged
@@ -517,7 +518,7 @@ MonoBehaviour:
     _damage: {x: 0.8, y: 2.3}
     _reloadingSpeed: 0.8
     _shootingDelay: 0.08
-    _speedBullet: 18
+    _speedBullet: 30
     _shootDetection: 7
     _firingSpread: 1.5
     _bulletDatas:
@@ -550,3 +551,22 @@ MonoBehaviour:
   _lightRadius: {fileID: 80649537724150939}
   _towerComponent: {fileID: 3737306960786255559}
   _speedVisibleOffset: 0.01
+--- !u!114 &2148992178707090965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618396793893627163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fa21e6d40acd40a9bdfaec7453904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disolvePropertyName: _Edge
+  _renderers:
+  - {fileID: 5935553266532278548}
+  - {fileID: 2693889731506321279}
+  - {fileID: 7050903129637504891}
+  _propertyValue: {x: 3, y: 5}
+  _duration: 2
