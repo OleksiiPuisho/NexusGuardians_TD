@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4700278059399808544, guid: 3adb48062eab9524ebdde9e82e0bd4fa, type: 3}
+  - {fileID: 2100000, guid: ac3344e923bd00142a429c4195cf8152, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +145,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4700278059399808544, guid: 3adb48062eab9524ebdde9e82e0bd4fa, type: 3}
+  - {fileID: 2100000, guid: ac3344e923bd00142a429c4195cf8152, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 638387123764319345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769965837953263026}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2857403131336065421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0010004342, y: 0.6282124, z: -0.102999926}
+  m_LocalPosition: {x: 0, y: 0.6282124, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -292,7 +292,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4700278059399808544, guid: 3adb48062eab9524ebdde9e82e0bd4fa, type: 3}
+  - {fileID: 2100000, guid: ac3344e923bd00142a429c4195cf8152, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -396,7 +396,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 7361602778832974326}
   - component: {fileID: 3737306960786255559}
   - component: {fileID: 2131740652564952337}
+  - component: {fileID: 2148992178707090965}
   m_Layer: 6
   m_Name: MachineGun_2
   m_TagString: Untagged
@@ -467,7 +468,7 @@ Transform:
   - {fileID: 4038837870355936766}
   - {fileID: 8162149739351062773}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7361602778832974326
 BoxCollider:
@@ -508,19 +509,31 @@ MonoBehaviour:
   - {fileID: 638387123764319345}
   - {fileID: 1769965837953263026}
   _towerData:
-    _radius: 12
+    _name: Machine Gun
+    _searchingType: 0
+    _attackType: 2
+    _bulletType: 0
+    _radius: 20
     _speedRotate: 3
     _damage: {x: 0.8, y: 2.3}
-    _reloadingSpeed: 0.8
-    _shootingDelay: 0.08
-    _speedBullet: 18
+    _reloadingSpeed: 0.05
+    _shootingDelay: 0
+    _speedBullet: 30
     _shootDetection: 7
     _firingSpread: 1.5
+    _bulletDatas:
+    - _bulletType: 0
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 1
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 2
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
-    type: 3}
 --- !u!114 &2131740652564952337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,4 +550,23 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 80649537724150939}
   _towerComponent: {fileID: 3737306960786255559}
-  _speedVisibleOffset: 10
+  _speedVisibleOffset: 0.01
+--- !u!114 &2148992178707090965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618396793893627163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fa21e6d40acd40a9bdfaec7453904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disolvePropertyName: _Edge
+  _renderers:
+  - {fileID: 5935553266532278548}
+  - {fileID: 2693889731506321279}
+  - {fileID: 7050903129637504891}
+  _propertyValue: {x: 3, y: 6}
+  _duration: 2

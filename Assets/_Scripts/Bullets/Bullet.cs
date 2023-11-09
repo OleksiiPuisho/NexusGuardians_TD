@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Bullet : BulletBehaviorBase
 {
-    void Update()
-    {
-        MovementHandler();
-    }
+    
 }

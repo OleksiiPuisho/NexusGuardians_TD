@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412379688561297356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0017996132, y: 0.6282124, z: -0.112999916}
+  m_LocalPosition: {x: 0, y: 0.6282124, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -166,7 +166,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 5475095262031722335}
   - component: {fileID: 5097065749920219342}
   - component: {fileID: 6643962892446639130}
+  - component: {fileID: 8591256047051472577}
   m_Layer: 6
   m_Name: MachineGun_1
   m_TagString: Untagged
@@ -404,7 +405,7 @@ Transform:
   - {fileID: 1878649217889448895}
   - {fileID: 5518975608026247919}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5475095262031722335
 BoxCollider:
@@ -444,19 +445,31 @@ MonoBehaviour:
   _bulletParents:
   - {fileID: 5521419634182105845}
   _towerData:
-    _radius: 10
+    _name: Machine Gun
+    _searchingType: 0
+    _attackType: 2
+    _bulletType: 0
+    _radius: 15
     _speedRotate: 1.5
     _damage: {x: 0.3, y: 1.5}
-    _reloadingSpeed: 1
-    _shootingDelay: 0.1
-    _speedBullet: 15
+    _reloadingSpeed: 0.08
+    _shootingDelay: 0
+    _speedBullet: 30
     _shootDetection: 7
-    _firingSpread: 2
+    _firingSpread: 5
+    _bulletDatas:
+    - _bulletType: 0
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 1
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 2
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
-    type: 3}
 --- !u!114 &6643962892446639130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +486,26 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 3994098011026695319}
   _towerComponent: {fileID: 5097065749920219342}
-  _speedVisibleOffset: 10
+  _speedVisibleOffset: 0.01
+--- !u!114 &8591256047051472577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451435426963874650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fa21e6d40acd40a9bdfaec7453904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disolvePropertyName: _Edge
+  _renderers:
+  - {fileID: 8088968614779594581}
+  - {fileID: 539313023704756542}
+  - {fileID: 4883959373142131002}
+  _propertyValue: {x: 3, y: 6}
+  _duration: 2
 --- !u!1 &6595470873759822147
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +530,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6595470873759822147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.384}
+  m_LocalPosition: {x: 0, y: 0, z: 1.567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

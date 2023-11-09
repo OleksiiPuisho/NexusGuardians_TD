@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public abstract class BulletBehaviorBase : MonoBehaviour
 {
-    [SerializeField] private Transform _shootParticle;
-    [SerializeField] private Transform _hitParticleMetal;
-    [SerializeField] private Transform _hitParticleGround;
+    [SerializeField] private VisualEffect _shootParticle;
+    [SerializeField] private VisualEffect _hitParticleMetal;
+    [SerializeField] private VisualEffect _hitParticleGround;
 
-    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private string _groundLayerName;
 
     [SerializeField] protected float _timeToDeactivationBullet;
 
@@ -28,7 +29,7 @@ public abstract class BulletBehaviorBase : MonoBehaviour
         _waitForSeconds = new WaitForSeconds(_timeToDeactivationBullet);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         MovementHandler();
     }
@@ -53,7 +54,7 @@ public abstract class BulletBehaviorBase : MonoBehaviour
         StartCoroutine(AutoPutDelay());
     }
 
-    private void CreateParticle(Transform particle)
+    private void CreateParticle(VisualEffect particle)
     {
         GameObject shotParticle = PoolObjects.GetObject(particle.gameObject);
         shotParticle.transform.SetPositionAndRotation(transform.position, transform.rotation);
@@ -64,7 +65,7 @@ public abstract class BulletBehaviorBase : MonoBehaviour
         if (collision.gameObject.TryGetComponent<IDamageble>(out var damageble))
             damageble.SetHealth(-Random.Range(_damage.x, _damage.y));
 
-        if (collision.gameObject.layer == _groundLayer)
+        if (collision.gameObject.layer == LayerMask.NameToLayer(_groundLayerName))
             CreateParticle(_hitParticleGround);
         else
             CreateParticle(_hitParticleMetal);

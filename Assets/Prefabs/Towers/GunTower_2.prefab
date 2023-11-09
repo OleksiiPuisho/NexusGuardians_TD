@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4773788894761623898}
   - component: {fileID: 3413819230195988961}
   - component: {fileID: 1298692541611929751}
+  - component: {fileID: 1407119262494012714}
   m_Layer: 6
   m_Name: GunTower_2
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 227222848973498497}
   - {fileID: 3844839737054064042}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4773788894761623898
 BoxCollider:
@@ -76,20 +77,31 @@ MonoBehaviour:
   - {fileID: 4139522050617467199}
   - {fileID: 7758102613467148266}
   _towerData:
-    _radius: 20
+    _name: Gun Tower
+    _searchingType: 0
+    _attackType: 0
+    _bulletType: 0
+    _radius: 25
     _speedRotate: 0.65
-    _damage: {x: 3, y: 5.5}
-    _reloadingSpeed: 4
+    _damage: {x: 10, y: 20}
+    _reloadingSpeed: 1.5
     _shootingDelay: 0.6
-    _speedBullet: 18
+    _speedBullet: 30
     _shootDetection: 5
     _firingSpread: 1.5
+    _bulletDatas:
+    - _bulletType: 0
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 1
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
+    - _bulletType: 2
+      _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
+        type: 3}
   _testBase: {fileID: 0}
   _enemies:
   - {fileID: 0}
-  - {fileID: 0}
-  _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
-    type: 3}
 --- !u!114 &1298692541611929751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +118,28 @@ MonoBehaviour:
   _selectedVisualization: 1
   _lightRadius: {fileID: 6128196127158572416}
   _towerComponent: {fileID: 3413819230195988961}
-  _speedVisibleOffset: 10
+  _speedVisibleOffset: 0.01
+--- !u!114 &1407119262494012714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005510940365918893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07fa21e6d40acd40a9bdfaec7453904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disolvePropertyName: _Edge
+  _renderers:
+  - {fileID: 141255078377766703}
+  - {fileID: 4697024795127513289}
+  - {fileID: 3634023833915062756}
+  - {fileID: 7494384651926305077}
+  - {fileID: 7600942457774402582}
+  _propertyValue: {x: 3, y: 6}
+  _duration: 2
 --- !u!1 &1211423782144980782
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +213,7 @@ GameObject:
   - component: {fileID: 580829265711631597}
   - component: {fileID: 5696355772265253676}
   - component: {fileID: 3634023833915062756}
+  - component: {fileID: 3916775285031106118}
   m_Layer: 6
   m_Name: GunL_lp
   m_TagString: Untagged
@@ -195,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4365575873367495259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0047259573, y: 0.2549138, z: 1.158}
+  m_LocalPosition: {x: 0, y: 0.25, z: 1.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -253,6 +287,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &3916775285031106118
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4365575873367495259}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d489ce07cdd9d5b4d889e3304585dacb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4893785897564550715
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +642,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -634,6 +689,7 @@ GameObject:
   - component: {fileID: 5640192797863997494}
   - component: {fileID: 4650195704416816985}
   - component: {fileID: 7494384651926305077}
+  - component: {fileID: 7230396277150027554}
   m_Layer: 6
   m_Name: GunP_lp
   m_TagString: Untagged
@@ -649,7 +705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8489095438324251287}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0047259573, y: 0.2549138, z: 1.158}
+  m_LocalPosition: {x: 0, y: 0.25, z: 1.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -707,3 +763,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7230396277150027554
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489095438324251287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d489ce07cdd9d5b4d889e3304585dacb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
