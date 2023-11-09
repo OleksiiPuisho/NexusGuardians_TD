@@ -452,8 +452,8 @@ MonoBehaviour:
     _radius: 15
     _speedRotate: 1.5
     _damage: {x: 0.3, y: 1.5}
-    _reloadingSpeed: 0.1
-    _shootingDelay: 0.01
+    _reloadingSpeed: 0.08
+    _shootingDelay: 0
     _speedBullet: 30
     _shootDetection: 7
     _firingSpread: 5
@@ -504,7 +504,7 @@ MonoBehaviour:
   - {fileID: 8088968614779594581}
   - {fileID: 539313023704756542}
   - {fileID: 4883959373142131002}
-  _propertyValue: {x: 3, y: 5}
+  _propertyValue: {x: 3, y: 6}
   _duration: 2
 --- !u!1 &6595470873759822147
 GameObject:

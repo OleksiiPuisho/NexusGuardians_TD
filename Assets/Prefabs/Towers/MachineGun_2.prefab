@@ -510,14 +510,14 @@ MonoBehaviour:
   - {fileID: 1769965837953263026}
   _towerData:
     _name: Machine Gun
-    _searchingType: 1
+    _searchingType: 0
     _attackType: 2
     _bulletType: 0
     _radius: 20
     _speedRotate: 3
     _damage: {x: 0.8, y: 2.3}
-    _reloadingSpeed: 0.8
-    _shootingDelay: 0.08
+    _reloadingSpeed: 0.05
+    _shootingDelay: 0
     _speedBullet: 30
     _shootDetection: 7
     _firingSpread: 1.5
@@ -568,5 +568,5 @@ MonoBehaviour:
   - {fileID: 5935553266532278548}
   - {fileID: 2693889731506321279}
   - {fileID: 7050903129637504891}
-  _propertyValue: {x: 3, y: 5}
+  _propertyValue: {x: 3, y: 6}
   _duration: 2

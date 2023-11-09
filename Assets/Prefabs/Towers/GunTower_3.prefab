@@ -751,7 +751,7 @@ MonoBehaviour:
   - {fileID: 6907415750799640013}
   - {fileID: 410901004039636252}
   - {fileID: 344894324791922751}
-  _propertyValue: {x: 3, y: 5}
+  _propertyValue: {x: 3, y: 6}
   _duration: 2
 --- !u!1 &8612087273160941354
 GameObject:

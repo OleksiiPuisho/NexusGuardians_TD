@@ -36,7 +36,7 @@ Transform:
   - {fileID: 7535702702595712864}
   - {fileID: 3951956422845071820}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6559264535526608917
 BoxCollider:
@@ -78,17 +78,17 @@ MonoBehaviour:
   - {fileID: 8330092859599873433}
   _towerData:
     _name: Machine Gun
-    _searchingType: 2
+    _searchingType: 0
     _attackType: 2
     _bulletType: 0
     _radius: 25
     _speedRotate: 5
     _damage: {x: 1, y: 3}
-    _reloadingSpeed: 0.5
-    _shootingDelay: 0.05
+    _reloadingSpeed: 0.04
+    _shootingDelay: 0
     _speedBullet: 30
     _shootDetection: 7
-    _firingSpread: 1
+    _firingSpread: 5
     _bulletDatas:
     - _bulletType: 0
       _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
@@ -136,7 +136,7 @@ MonoBehaviour:
   - {fileID: 200329047925732234}
   - {fileID: 8501241912234042849}
   - {fileID: 3549174057870366181}
-  _propertyValue: {x: 3, y: 5}
+  _propertyValue: {x: 3, y: 6}
   _duration: 2
 --- !u!1 &5276796042563741838
 GameObject:
