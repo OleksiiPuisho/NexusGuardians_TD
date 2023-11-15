@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
@@ -21,9 +20,12 @@ public class CameraController : MonoBehaviour
 
     private Touch _touchOne;
     private Touch _touchTwo;
+    private EventSystem _eventSystem;
 
     void Awake()
     {
+        _eventSystem = EventSystem.current;
+
         _targetPosition = transform.position;
         _targetRotation = transform.rotation.eulerAngles;
         _cameraRotation = _cameraTransform.localEulerAngles.x;
@@ -31,6 +33,11 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        ZoomHandler();
+        CorrectedDistance();
+        MovementHandler();
+        RotationHandler();
+
         if (transform.position != _targetPosition)
         {
             transform.position = Vector3.LerpUnclamped(transform.position, _targetPosition, _cameraInterpolate);
@@ -39,24 +46,24 @@ public class CameraController : MonoBehaviour
         {
             transform.rotation = Quaternion.LerpUnclamped(transform.rotation, Quaternion.Euler(_targetRotation), _cameraInterpolate);
         }
-        if(_cameraTransform.localEulerAngles.x != _cameraRotation)
+        if (_cameraTransform.localEulerAngles.x != _cameraRotation)
         {
             _cameraTransform.localEulerAngles = new(Mathf.Lerp(_cameraTransform.localEulerAngles.x, _cameraRotation, _cameraInterpolate), 0, 0);
         }
-    }
-    private void Update()
-    {
-        ZoomHandler();
-        CorrectedDistance();
-        MovementHandler();
-        RotationHandler();
     }
 
     private void MovementHandler()
     {
         #region TouchControl
 #if (PLATFORM_ANDROID)
+        if (Input.touchCount == 1 && !_eventSystem.IsPointerOverGameObject())
+        {
+            _touchOne = Input.GetTouch(0);
+            float speedX = -_touchOne.deltaPosition.x * _cameraSpeedOffset * Time.deltaTime;
+            float speedZ = -_touchOne.deltaPosition.y * _cameraSpeedOffset * Time.deltaTime;
 
+            _targetPosition = new Vector3(_targetPosition.x + speedX, _targetPosition.y, _targetPosition.z + speedZ);
+        }
 #endif
         #endregion
 
@@ -127,7 +134,7 @@ public class CameraController : MonoBehaviour
 
             if (_targetPosition.y != distancceCorected)
             {                
-                _targetPosition.y = Mathf.Lerp(_targetPosition.y, distancceCorected, _cameraInterpolate);
+                _targetPosition.y = Mathf.Lerp(_targetPosition.y, distancceCorected, _cameraInterpolate); 
             }
         }
     }

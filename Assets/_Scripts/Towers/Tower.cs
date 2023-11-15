@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TowerSystems;
-using System.Linq;
 
 public abstract class Tower : MonoBehaviour
 {
@@ -15,20 +14,18 @@ public abstract class Tower : MonoBehaviour
     protected ISearchSystem _searchSystem;
     protected IShootingSystem _shootingSystem;
 
-    [SerializeField] protected Transform _testBase;//test
+    [SerializeField] protected Transform _mainBase;//test
     protected Transform _target;
-    [SerializeField] protected List<Enemy> _enemies = new();//test
 
 
     protected WaitForSeconds _waitForSecondsDelay;
     protected WaitForSeconds _waitForSecondsReloading;
     public TowerData GetTowerData() => _towerData;
+    public void SetTowerData(TowerData towerData) => _towerData = towerData;
 
     void Start()
     {
-        _testBase = GameObject.Find("Nexsus").transform;//test
-        Enemy[] enemy = (Enemy[])FindObjectsOfTypeAll(typeof(Enemy));//test
-        _enemies = enemy.ToList();//test
+        _mainBase = GameObject.Find("Nexsus").transform;//test
 
         _waitForSecondsDelay = new WaitForSeconds(_towerData.ShootingDelay);
         _waitForSecondsReloading = new WaitForSeconds(_towerData.ReloadingSpeed);
@@ -36,14 +33,14 @@ public abstract class Tower : MonoBehaviour
         PrepareTowerSystems();
     }
     void Update()
-    {        
+    {
         if (_target != null && _target.gameObject.activeSelf)
         {
             ShootingHandler();
         }
         else
         {
-            _target = _searchSystem.GetTarget(_enemies);
+            SearchTarget();
         }
     }
     private void FixedUpdate()
@@ -56,7 +53,7 @@ public abstract class Tower : MonoBehaviour
     }
 
     protected virtual void ShootingHandler()
-    {       
+    {
         if (_rotationSystem.LookToTarget(_turret, ref _target, _towerData.ShootDetection) && _shootingSystem.IsShooting == false)
         {
             StartCoroutine(_shootingSystem.ShootingDelay(_target));
@@ -70,5 +67,21 @@ public abstract class Tower : MonoBehaviour
         }
     }
 
+    private void SearchTarget()
+    {
+        if (_towerData.AttackType == AttackType.Ground)
+            _target = _searchSystem.GetTarget(WaveController.EnemiesGroundList);
+        if (_towerData.AttackType == AttackType.Air)
+            _target = _searchSystem.GetTarget(WaveController.EnemiesAirList);
+        else
+        {
+            _target = _searchSystem.GetTarget(WaveController.EnemiesGroundList);
+
+            if (_target != null)
+                return;
+
+            _target = _searchSystem.GetTarget(WaveController.EnemiesAirList);
+        }
+    }
     protected abstract void PrepareTowerSystems();
 }

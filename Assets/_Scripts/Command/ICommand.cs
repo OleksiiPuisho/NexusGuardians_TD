@@ -8,4 +8,8 @@ namespace Command
     {
         void Execute(T data);
     }
+    public interface ICommand<TData, TItem>
+    {
+        void Execute(TData data, TItem item);
+    }
 }

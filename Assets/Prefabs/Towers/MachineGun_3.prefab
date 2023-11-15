@@ -78,17 +78,13 @@ MonoBehaviour:
   - {fileID: 8330092859599873433}
   _towerData:
     _name: Machine Gun
+    _level: 3
     _searchingType: 0
     _attackType: 2
     _bulletType: 0
-    _radius: 25
-    _speedRotate: 5
-    _damage: {x: 1, y: 3}
-    _reloadingSpeed: 0.04
     _shootingDelay: 0
     _speedBullet: 30
     _shootDetection: 7
-    _firingSpread: 5
     _bulletDatas:
     - _bulletType: 0
       _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
@@ -99,9 +95,16 @@ MonoBehaviour:
     - _bulletType: 2
       _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
         type: 3}
-  _testBase: {fileID: 0}
-  _enemies:
-  - {fileID: 0}
+    _upgradeList:
+    - {fileID: 5451435426963874650, guid: d2142e57aba990547ba5b2c301bea775, type: 3}
+    - {fileID: 7618396793893627163, guid: 0d1a7ae47d468e54c995dc0a97bc9f07, type: 3}
+    - {fileID: 4116606235394963333}
+    FiringSpread: 0
+    Radius: 0
+    SpeedRotate: 0
+    Damage: {x: 0, y: 0}
+    ReloadingSpeed: 0
+  _mainBase: {fileID: 0}
 --- !u!114 &1823859110581500982
 MonoBehaviour:
   m_ObjectHideFlags: 0

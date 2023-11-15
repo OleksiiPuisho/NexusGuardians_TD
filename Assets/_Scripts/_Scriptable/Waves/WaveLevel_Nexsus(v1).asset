@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c582e0f83596df47a571a5da53226f1, type: 3}
+  m_Name: WaveLevel_Nexsus(v1)
+  m_EditorClassIdentifier: 
+  _waves:
+  - _enemyInstances:
+    - _count: 2
+      _prefabEnemy: {fileID: 7602708821921478364, guid: abc6a57296034c94abf26d1633c74bbd,
+        type: 3}
+      _indexSpawnrPoint: 0
+    - _count: 10
+      _prefabEnemy: {fileID: 7602708821921478364, guid: abc6a57296034c94abf26d1633c74bbd,
+        type: 3}
+      _indexSpawnrPoint: 1
+    - _count: 20
+      _prefabEnemy: {fileID: 7602708821921478364, guid: abc6a57296034c94abf26d1633c74bbd,
+        type: 3}
+      _indexSpawnrPoint: 0
+    - _count: 20
+      _prefabEnemy: {fileID: 7602708821921478364, guid: abc6a57296034c94abf26d1633c74bbd,
+        type: 3}
+      _indexSpawnrPoint: 1
+    _rewardWave: 100
+  - _enemyInstances:
+    - _count: 5
+      _prefabEnemy: {fileID: 7602708821921478364, guid: abc6a57296034c94abf26d1633c74bbd,
+        type: 3}
+      _indexSpawnrPoint: 0
+    _rewardWave: 200

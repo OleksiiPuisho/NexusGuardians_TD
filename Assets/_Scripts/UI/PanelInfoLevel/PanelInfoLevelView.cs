@@ -14,8 +14,12 @@ namespace MVP
     }
     public class PanelInfoLevelView : BaseView, IPanelInfoLevelView
     {
+        [SerializeField] private SelectedController _selectedController;
+        [SerializeField] private TowerObserver _towerObserver;
+
         [SerializeField] private Button _closeButton;
         [SerializeField] private Button _destroyTowerButton;
+        [SerializeField] private Button _upgradeTowerButton;
 
         [SerializeField] private TMP_Text _tittle;
         //info Tower
@@ -55,10 +59,10 @@ namespace MVP
             base.OnAwake();
 
             EventAggregator.Subscribe<SelectedObjectEvent>(SelectedObjecttHandler);
-            EventAggregator.Subscribe<DeselectedAllEvent>(delegate { Hide(); });
+            EventAggregator.Subscribe<DeselectedAllEvent>(delegate { _upgradeTowerButton.onClick.RemoveAllListeners(); Hide(); });
 
             _closeButton.onClick.AddListener(delegate { Presenter.ClosePanelHandler(); });
-            _destroyTowerButton.onClick.AddListener(delegate { Presenter.DestroyTowerHandler(); });
+            _destroyTowerButton.onClick.AddListener(delegate { Presenter.DestroyTowerHandler(); });            
         }
 
         private void SelectedObjecttHandler(object sender, SelectedObjectEvent eventData)
@@ -66,8 +70,19 @@ namespace MVP
             if (eventData.TypeSelectedObject == TypeSelectedObject.Tower)
             {
                 Show();
-                var towerData = eventData.SelectedObject.GetComponent<Tower>().GetTowerData();
-                Presenter.UpdateTowerInfoData(towerData);
+                var tower = eventData.SelectedObject.GetComponent<Tower>();
+                Presenter.UpdateTowerInfoData(tower.GetTowerData());
+
+                
+                if (tower.GetTowerData().Level >= 3)
+                {
+                    _upgradeTowerButton.interactable = false;
+                }
+                else
+                {
+                    _upgradeTowerButton.interactable = true;
+                    _upgradeTowerButton.onClick.AddListener(delegate { Presenter.UpgradeTowerHandler(tower); });
+                }
             }
             else
                 Hide();

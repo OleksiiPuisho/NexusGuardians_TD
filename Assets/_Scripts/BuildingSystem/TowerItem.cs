@@ -9,6 +9,12 @@ namespace ItemLinks
     public class TowerItem : MonoBehaviour
     {
         public Image Icon;
-        public TMP_Text PriceText;
+        public int Price;
+        [SerializeField] private TMP_Text _priceText;
+
+        private void Start()
+        {
+            _priceText.text = Price.ToString();
+        }
     }
 }

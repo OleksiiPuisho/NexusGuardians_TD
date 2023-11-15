@@ -13,17 +13,17 @@ public class EnemyInstance
 {
     [SerializeField] private int _count;
     [SerializeField] private GameObject _prefabEnemy;
+    [SerializeField] private int _indexSpawnrPoint;
 
     public int Count => _count;
     public GameObject PrefabEnemy => _prefabEnemy;
+    public int IndexSpawnrPoint => _indexSpawnrPoint;
 }
 [System.Serializable]
 public class Wave
 {
     [SerializeField] private EnemyInstance[] _enemyInstances;
-    [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private int _rewardWave;
     public EnemyInstance[] EnemyInstances => _enemyInstances;
-    public Transform[] SpawnPoints => _spawnPoints;
     public int RewardWave => _rewardWave;
 }

@@ -7,14 +7,17 @@ public class InitUILevel : MonoBehaviour
 {
     [SerializeField] private Color _colorText;
     [SerializeField] private SelectedController _selectedController;
+    [SerializeField] private TowerObserver _towerObserver;
     [Space]
     //viewers
     [SerializeField] private PanelInfoLevelView _panelInfoLevelView;
     [SerializeField] private BuildingTowerPanelView _buildingTowerPanelView;
+    [SerializeField] private MainInfoPanelView _mainInfoPanelView;
 
     //presenters
     private IPanelInfoLevelPresenter _panelInfoLevelPresenter;
     private BuildingTowerPanelPresenter _buildingTowerPanelPresenter;
+    private MainInfoPanelPresenter _mainInfoPanelPresenter;
 
 
     //models
@@ -30,6 +33,7 @@ public class InitUILevel : MonoBehaviour
     {
         PreparePanelInfoLevel();
         PrepareBuildingTowerPanel();
+        PrepareMainInfoPanel();
     }
 
     private void PreparePanelInfoLevel()
@@ -38,7 +42,7 @@ public class InitUILevel : MonoBehaviour
         _towerInfoCommand = new TowerInfoCommand(_panelInfoLevelView, _colorText);
         _destroyTowerCommand = new DestroyTowerCommand(_selectedController);
 
-        _panelInfoLevelPresenter = new PanelInfoLevelPresenter(_panelInfoLevelView, _panelInfoLevelModel, _towerInfoCommand, _destroyTowerCommand);
+        _panelInfoLevelPresenter = new PanelInfoLevelPresenter(_panelInfoLevelView, _panelInfoLevelModel, _towerInfoCommand, _destroyTowerCommand, _towerObserver);
         _panelInfoLevelPresenter.Initialize();
     }
 
@@ -48,5 +52,11 @@ public class InitUILevel : MonoBehaviour
 
         _buildingTowerPanelPresenter = new BuildingTowerPanelPresenter(_buildingTowerPanelView, _createTowerCommand);
         _buildingTowerPanelPresenter.Initialize();
+    }
+
+    private void PrepareMainInfoPanel()
+    {
+        _mainInfoPanelPresenter = new(_mainInfoPanelView);
+        _mainInfoPanelPresenter.Initialize();
     }
 }

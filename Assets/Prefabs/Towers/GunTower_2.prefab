@@ -78,17 +78,14 @@ MonoBehaviour:
   - {fileID: 7758102613467148266}
   _towerData:
     _name: Gun Tower
+    _towerType: 1
+    _upgradeStrenght: 30
     _searchingType: 0
     _attackType: 0
     _bulletType: 0
-    _radius: 25
-    _speedRotate: 0.65
-    _damage: {x: 10, y: 20}
-    _reloadingSpeed: 1.5
     _shootingDelay: 0.6
     _speedBullet: 30
     _shootDetection: 5
-    _firingSpread: 1.5
     _bulletDatas:
     - _bulletType: 0
       _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
@@ -99,9 +96,13 @@ MonoBehaviour:
     - _bulletType: 2
       _bulletPrefab: {fileID: 2356603727727736115, guid: dccaaa0317f48bd4ca322b87271ce4cf,
         type: 3}
-  _testBase: {fileID: 0}
-  _enemies:
-  - {fileID: 0}
+    Level: 0
+    Radius: 0
+    SpeedRotate: 0
+    Damage: {x: 0, y: 0}
+    ReloadingSpeed: 0
+    FiringSpread: 0
+  _mainBase: {fileID: 0}
 --- !u!114 &1298692541611929751
 MonoBehaviour:
   m_ObjectHideFlags: 0

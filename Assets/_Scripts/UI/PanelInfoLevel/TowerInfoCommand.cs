@@ -22,16 +22,16 @@ namespace MVP
         {
             var result = new TowerInfo()
             {
-                Name = towerData.Name,
+                Name = string.Format("{0} Mk.{1}", towerData.Name, towerData.Level),
                 BulletType = towerData.BulletType,
                 SerchingType = towerData.SearchingType,
 
                 AttackType = string.Format("Type: <color=#{1}> {0} </color>", GetAttackType(towerData.AttackType), ColorUtility.ToHtmlStringRGB(_colorText)),
-                Radius = string.Format("Radius: <color=#{1}> {0}m </color>", towerData.Radius, ColorUtility.ToHtmlStringRGB(_colorText)),
-                SpeedRotate = string.Format("Speed rotation: <color=#{1}> {0} </color>", towerData.SpeedRotate, ColorUtility.ToHtmlStringRGB(_colorText)),
-                Damage = string.Format("Damage: <color=#{2}> {0}-{1} </color>", towerData.Damage.x, towerData.Damage.y, ColorUtility.ToHtmlStringRGB(_colorText)),
-                ReloadingSpeed = string.Format("Reloading speed: <color=#{1}>{0}s </color>", towerData.ReloadingSpeed, ColorUtility.ToHtmlStringRGB(_colorText)),
-                FiringSpread = string.Format("Firing spread: <color=#{1}>{0}° </color>", towerData.FiringSpread, ColorUtility.ToHtmlStringRGB(_colorText)),
+                Radius = string.Format("Radius: <color=#{1}> {0:F0}m </color>", towerData.Radius, ColorUtility.ToHtmlStringRGB(_colorText)),
+                SpeedRotate = string.Format("Speed rotation: <color=#{1}> {0:F0} </color>", towerData.SpeedRotate, ColorUtility.ToHtmlStringRGB(_colorText)),
+                Damage = string.Format("Damage: <color=#{2}> {0:F0}-{1:F0} </color>", towerData.Damage.x, towerData.Damage.y, ColorUtility.ToHtmlStringRGB(_colorText)),
+                ReloadingSpeed = string.Format("Reloading speed: <color=#{1}>{0:F1}s </color>", towerData.ReloadingSpeed, ColorUtility.ToHtmlStringRGB(_colorText)),
+                FiringSpread = string.Format("Firing spread: <color=#{1}>{0:F2}° </color>", towerData.FiringSpread, ColorUtility.ToHtmlStringRGB(_colorText)),
 
             };
             return result;

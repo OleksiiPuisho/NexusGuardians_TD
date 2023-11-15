@@ -16,6 +16,8 @@ namespace MVP
     {
         [SerializeField] private TowerItemScriptable _towerItemScriptable;
         [SerializeField] private Transform _towerItemContainer;
+
+        private List<TowerItem> _towerItemButtons = new();
         public IBuildingTowerPanelPresenter Presenter { get; private set; }
 
         public void InitPresenter(IBuildingTowerPanelPresenter presenter)
@@ -27,8 +29,22 @@ namespace MVP
             base.OnAwake();
             PrepareTowerItems();
 
-            EventAggregator.Subscribe<SelectedObjectEvent>(SelectedObjecttHandler);
-            EventAggregator.Subscribe<DeselectedAllEvent>(delegate { Hide(); });
+            EventAggregator.Subscribe<EnergyUpdateUIEvent>(UpdateButtonInteractableHandler);
+        }
+
+        private void UpdateButtonInteractableHandler(object sender, EnergyUpdateUIEvent eventData)
+        {
+            for (int i = 0; i < _towerItemButtons.Count; i++)
+            {
+                var button = _towerItemButtons[i].GetComponent<Button>();
+
+                if (eventData.MoneyAmmount >= _towerItemButtons[i].Price)
+                {
+                    button.interactable = true;
+                }
+                else
+                    button.interactable = false;
+            }
         }
 
         private void PrepareTowerItems()
@@ -37,24 +53,20 @@ namespace MVP
             {
                 int itemIndex = i;
 
-                GameObject item = Instantiate(_towerItemScriptable.PrefabItem, _towerItemContainer);
-                item.GetComponent<TowerItem>().Icon.sprite = _towerItemScriptable.TowerItems[i].Icon;
-                item.GetComponent<TowerItem>().PriceText.text = _towerItemScriptable.TowerItems[i].Price.ToString();
-                item.GetComponent<Button>().onClick.AddListener(delegate { CreateTowerButtonClick(_towerItemScriptable.TowerItems[itemIndex].Prefab); });
+                GameObject itemObject = Instantiate(_towerItemScriptable.PrefabItem, _towerItemContainer);
+                TowerItem item = itemObject.GetComponent<TowerItem>();
+
+                item.Icon.sprite = _towerItemScriptable.TowerItems[i].Icon;
+                item.Price = _towerItemScriptable.TowerItems[i].Price;
+                itemObject.GetComponent<Button>().onClick.AddListener(delegate { CreateTowerButtonClick(_towerItemScriptable.TowerItems[itemIndex].Prefab, _towerItemScriptable.TowerItems[itemIndex].Price); });
+
+                _towerItemButtons.Add(item);
             }
         }
-        private void SelectedObjecttHandler(object sender, SelectedObjectEvent eventData)
-        {
-            if (eventData.TypeSelectedObject == TypeSelectedObject.BuildTowerPoint)
-                Show();
-            else
-                Hide();
-        }
-        private void CreateTowerButtonClick(GameObject prefab) => Presenter.CreatedTowerClick(prefab);
+        private void CreateTowerButtonClick(GameObject prefab, int price) => Presenter.CreatedTowerClick(prefab, price);
         private void OnDestroy()
         {
-            EventAggregator.Unsubscribe<SelectedObjectEvent>(SelectedObjecttHandler);
-            EventAggregator.Unsubscribe<DeselectedAllEvent>(delegate { Hide(); });
+            EventAggregator.Unsubscribe<EnergyUpdateUIEvent>(UpdateButtonInteractableHandler);
         }
     }
 }

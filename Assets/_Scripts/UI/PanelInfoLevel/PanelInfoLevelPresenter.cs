@@ -11,24 +11,28 @@ namespace MVP
     {
         void ClosePanelHandler();
         void DestroyTowerHandler();
+        void UpgradeTowerHandler(Tower tower);
         void UpdateTowerInfoData(TowerData towerData);
     }
     public class PanelInfoLevelPresenter : IPanelInfoLevelPresenter
     {
-        private TowerInfoCommand _towerInfoCommand;
-        private DestroyTowerCommand _destroyTowerCommand;
-        public PanelInfoLevelPresenter(IPanelInfoLevelView view, IPanelInfoLevelModel model, TowerInfoCommand towerInfoCommand, DestroyTowerCommand destroyTowerCommand)
+        public PanelInfoLevelPresenter(IPanelInfoLevelView view, IPanelInfoLevelModel model, TowerInfoCommand towerInfoCommand, DestroyTowerCommand destroyTowerCommand, TowerObserver towerObserver)
         {
             View = view;
             Model = model;
             _towerInfoCommand = towerInfoCommand;
             _destroyTowerCommand = destroyTowerCommand;
+            _towerObserver = towerObserver;
         }
 
         public IPanelInfoLevelView View { get; private set; }
 
         public IPanelInfoLevelModel Model { get; private set; }
 
+        private TowerInfoCommand _towerInfoCommand;
+        private DestroyTowerCommand _destroyTowerCommand;
+
+        private TowerObserver _towerObserver;
 
         public void Initialize()
         {
@@ -56,6 +60,10 @@ namespace MVP
         public void DestroyTowerHandler()
         {
             _destroyTowerCommand.Execute();
+        }
+        public void UpgradeTowerHandler(Tower tower)
+        {
+            _towerObserver.UpgradeTower(tower);
         }
     }
 

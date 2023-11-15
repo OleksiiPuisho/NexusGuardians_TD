@@ -5,7 +5,7 @@ using Helpers.Events;
 
 namespace MVP
 {
-    public class CreateTowerCommand : ICommand<GameObject>
+    public class CreateTowerCommand : ICommand<GameObject, int>
     {
         private SelectedController _selectedController;
 
@@ -14,13 +14,23 @@ namespace MVP
             _selectedController = selectedController;
         }
 
-        public void Execute(GameObject data)
+        public void Execute(GameObject data, int price)
         {
-            var tower = Object.Instantiate(data, _selectedController.GetActiveSelected().transform);
-            tower.transform.SetPositionAndRotation(_selectedController.GetActiveSelected().GetComponent<SelectedBuildingPoint>().GetBuildingPosition().position,
-                _selectedController.GetActiveSelected().GetComponent<SelectedBuildingPoint>().GetBuildingPosition().rotation);
+            var buildPoint = _selectedController.GetActiveSelected();
 
-            PrepareBuildPoint();
+            if (buildPoint == null)
+                return;
+
+            if (LevelObserver.Instance.Energy >= price)
+            {
+                var tower = Object.Instantiate(data, buildPoint.transform);
+                tower.transform.SetPositionAndRotation(_selectedController.GetActiveSelected().GetComponent<SelectedBuildingPoint>().GetBuildingPosition().position,
+                    buildPoint.GetComponent<SelectedBuildingPoint>().GetBuildingPosition().rotation);
+
+                PrepareBuildPoint();
+
+                EventAggregator.Post(this, new EnergyUpdateEvent() { MoneyAmmount = -price });
+            }
         }
 
         private void PrepareBuildPoint()
